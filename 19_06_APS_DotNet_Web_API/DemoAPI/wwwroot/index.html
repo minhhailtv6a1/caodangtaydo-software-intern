@@ -1,0 +1,87 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Student Admin</title>
+  </head>
+  <body>
+    <h1>Student Management</h1>
+
+    <input id="name" placeholder="Name" />
+    <input id="age" placeholder="Age" />
+
+    <button onclick="addStudent()">Add</button>
+
+    <hr />
+
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody id="studentTable"></tbody>
+    </table>
+
+    <script>
+      const API = "/api/students";
+
+      loadStudents();
+
+      async function loadStudents() {
+        const res = await fetch(API);
+
+        const students = await res.json();
+
+        let html = "";
+
+        students.forEach((s) => {
+          html += `
+                <tr>
+                    <td>${s.id}</td>
+                    <td>${s.name}</td>
+                    <td>${s.age}</td>
+
+                    <td>
+                        <button onclick="deleteStudent(${s.id})">
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+                `;
+        });
+
+        document.getElementById("studentTable").innerHTML = html;
+      }
+
+      async function addStudent() {
+        const name = document.getElementById("name").value;
+        const age = document.getElementById("age").value;
+
+        await fetch(API, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            age: parseInt(age),
+          }),
+        });
+
+        loadStudents();
+      }
+
+      async function deleteStudent(id) {
+        await fetch(`${API}/${id}`, {
+          method: "DELETE",
+        });
+
+        loadStudents();
+      }
+    </script>
+  </body>
+</html>
