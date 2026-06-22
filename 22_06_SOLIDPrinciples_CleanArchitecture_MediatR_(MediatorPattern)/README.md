@@ -249,7 +249,7 @@ public class StudentReportService
 
 - Hiểu được cách Clean Architecture tách biệt Business Logic khỏi Database và UI thông qua các abstraction (Interface). Do Application Layer định nghĩa các Interface, còn Infrastructure Layer triển khai các Interface đó. Và nhờ vào Dependency Injection, Application Layer có thể sử dụng dữ liệu mà không phụ thuộc trực tiếp vào Database hay Framework cụ thể.
 
-.....
+- Nắm được cách áp dụng Mediator để giúp giảm sự phụ thuộc giữa các component với nhau.
 
 ## 9. Khó khăn gặp phải
 
