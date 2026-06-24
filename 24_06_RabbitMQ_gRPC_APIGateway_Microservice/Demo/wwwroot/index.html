@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Student Admin</title>
+  </head>
+  <body>
+    <h1>Student Management</h1>
+
+    <input id="name" placeholder="Name" />
+    <input id="age" placeholder="Age" />
+
+    <button onclick="addStudent()">Add</button>
+
+    <hr />
+
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Delete</th>
+          <th>Update</th>
+        </tr>
+      </thead>
+
+      <tbody id="studentTable"></tbody>
+    </table>
+
+    <script>
+      const API = "/api/Student";
+
+      loadStudents();
+
+      async function loadStudents() {
+        const res = await fetch(API);
+
+        const students = await res.json();
+
+        let html = "";
+
+        students.forEach((s) => {
+          html += `
+                <tr>
+                    <td>${s.id}</td>
+                    <td>${s.name}</td>
+                    <td>${s.age}</td>
+
+                    <td>
+                        <button onclick="deleteStudent(${s.id})">
+                            Delete
+                        </button>
+                    </td>
+                    <td>
+                        <button onclick="updateStudent(${s.id})">
+                            Update
+                        </button>
+                    </td>
+                </tr>
+                `;
+        });
+
+        document.getElementById("studentTable").innerHTML = html;
+      }
+
+      async function addStudent() {
+        const name = document.getElementById("name").value;
+        const age = document.getElementById("age").value;
+
+        await fetch(API, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            age: parseInt(age),
+          }),
+        });
+
+        loadStudents();
+      }
+
+      async function deleteStudent(id) {
+        await fetch(`${API}/${id}`, {
+          method: "DELETE",
+        });
+
+        loadStudents();
+      }
+
+      async function updateStudent(id) {
+        const name = prompt("Enter new name:");
+        const age = prompt("Enter new age:");
+
+        await fetch(`${API}/${id}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id,
+            name,
+            age: parseInt(age),
+          }),
+        });
+
+        loadStudents();
+      }
+    </script>
+  </body>
+</html>
