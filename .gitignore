@@ -18,3 +18,86 @@ obj/
 # OS files
 .DS_Store
 Thumbs.db
+
+
+# ==========================
+# Python
+# ==========================
+
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+.venv/
+env/
+
+# Environment variables
+.env
+
+# ==========================
+# Build / Cache
+# ==========================
+
+.pytest_cache/
+.mypy_cache/
+.cache/
+
+# ==========================
+# Jupyter
+# ==========================
+
+.ipynb_checkpoints/
+
+# ==========================
+# IDE
+# ==========================
+
+.vscode/
+.idea/
+.vs/
+
+# ==========================
+# User files
+# ==========================
+
+*.user
+*.suo
+
+# ==========================
+# Logs
+# ==========================
+
+*.log
+
+# ==========================
+# OS
+# ==========================
+
+.DS_Store
+Thumbs.db
+
+# ==========================
+# Generated Output
+# ==========================
+
+output/
+
+# Nếu muốn giữ thư mục output nhưng không commit file bên trong:
+# output/*
+# !output/.gitkeep
+
+# ==========================
+# Python Distribution
+# ==========================
+
+build/
+dist/
+*.egg-info/
+
+# ==========================
+# Optional
+# ==========================
+
+*.pdf

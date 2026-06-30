@@ -1,0 +1,36 @@
+{
+  "name": "Nguyen Van A",
+  "email": "vana@gmail.com",
+  "phone": "0123456789",
+
+  "major": "Computer Science",
+  "gpa": 3.65,
+
+  "courses": [
+    {
+      "name": "Machine Learning",
+      "grade": "A"
+    },
+    {
+      "name": "Natural Language Processing",
+      "grade": "A"
+    },
+    {
+      "name": "Database Systems",
+      "grade": "B+"
+    }
+  ],
+
+  "projects": [
+    {
+      "title": "Fake News Detection",
+      "description": "Built a PhoBERT classifier."
+    },
+    {
+      "title": "Student Recommendation",
+      "description": "Recommended learning paths."
+    }
+  ],
+
+  "certificates": ["TOEIC 850", "TensorFlow Developer"]
+}
